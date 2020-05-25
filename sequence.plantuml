@@ -1,0 +1,131 @@
+@startuml
+
+title CodeCool Quest UML Diagram
+
+
+package "parent" {
+  together {
+    class Main{
+    - map: GameMap
+    - canvas: Canvas
+    - context: GraphicsContext
+    - label: Label
+    --
+    + main(String[]): void
+    + start(Stage): void
+    - onKeyPressed(KeyEvent): void
+    - refresh(): void
+    }
+
+    class Tiles {
+    + TILE_WIDTH: int
+    - tileset: Image
+    - tileMap: HashMap<String, Title>
+    --
+    Class Tile
+    + Tile(int, int)
+    + drawTile(GraphicsContext, Drawable, int, int): void
+    }
+
+  }
+
+  together {
+
+    class Cell {
+    - CellType: type
+    - Actor: actor
+    - GameMap: gameMap
+    - x, y: int
+    --
+    + Cell(GameMap, int, int, CellType)
+    + getType(): type
+    + setType(): void
+    + setActor(): void
+    + getActor(): Actor
+    + getNeighbor(int, int): Cell
+    + getTileName(): String
+    + getX(): int
+    + getY(): int
+
+    }
+
+    class GameMap {
+    - width: int
+    - height: int
+    - cells: Cell[][]
+    - player: Player
+    --
+    + GamMap(int, int, CellType)
+    + getCell(int, int): Cell
+    + setPlayer(Player): void
+    + getPlayer(): Player
+    + getWidth(): int
+    + getHeight(): int
+    }
+
+    class MapLoader {
+        - is: InputStream
+        - scanner: Scanner
+        --
+        + loadMap(): map
+    }
+
+    class Actor {
+        - cell: Cell
+        - health: int
+        --
+        + Actor(Cell)
+        + move(int, int): void
+        + getHealth(): int
+        + getCell(): Cell
+        + getX(): int
+        + getY(): int
+    }
+
+    class Player {
+        + Payer(Cell)
+        + getTileName(): String
+    }
+
+    class Skeleton {
+        + Skeleton(Cell)
+        + getTileName(): String
+    }
+
+  }
+
+  together {
+
+     enum CellType{
+        EMPTY
+        FLOOR
+        WALL
+        - tileName: String
+        --
+        + CellType()
+        + getTileName(): String
+      }
+
+     class Drawable {
+        ~ getTileName()
+     }
+  }
+
+  Main -[hidden]-> Actor
+  Skeleton -[hidden]-> Drawable
+}
+
+class Player extends Actor
+class Skeleton extends Actor
+
+
+Main -> Tiles: drawTile()
+Main -> MapLoader: loadMap()
+Main -> GameMap: GameMap()
+Main -> Cell: Cell()
+MapLoader -> Skeleton: Skeleton()
+MapLoader -> Player: Player()
+Cell -> Actor: Actor()
+MapLoader -> CellType: EMPTY, FLOOR, WALL
+
+@enduml
