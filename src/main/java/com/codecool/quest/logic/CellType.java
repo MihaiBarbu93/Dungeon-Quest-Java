@@ -5,7 +5,7 @@ public enum CellType {
     FLOOR("floor"),
     WALL("wall"),
     DOOR("door"),
-    OPENDOOR("opendoor");
+    OPEN_DOOR("open door");
 
     private final String tileName;
 
