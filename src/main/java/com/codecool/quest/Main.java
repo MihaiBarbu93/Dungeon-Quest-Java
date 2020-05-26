@@ -3,12 +3,15 @@ package com.codecool.quest;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
+import com.codecool.quest.logic.actors.Player;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -27,6 +30,44 @@ public class Main extends Application {
         launch(args);
     }
 
+    class EditableLabel extends Label{
+        TextField tf = new TextField();
+        String backup = "";
+
+        public EditableLabel(String str){
+            super(str);
+            this.setOnMouseClicked(e -> {
+                if(e.getClickCount() == 2){
+                    tf.setText(backup = this.getText());
+                    this.setGraphic(tf);
+                    this.setText("");
+                    tf.requestFocus();
+                }
+            });
+            tf.focusedProperty().addListener((prop, o, n) -> {
+                if(!n){
+                    toLabel();
+                }
+            });
+            tf.setOnKeyReleased(e -> {
+                if(e.getCode().equals(KeyCode.ENTER)){
+                    toLabel();
+                    map.getPlayer().setName(tf.getText());
+                }else if(e.getCode().equals(KeyCode.ESCAPE)){
+                    tf.setText(backup);
+                    toLabel();
+                }
+            });
+        }
+
+        void toLabel(){
+            this.setGraphic(null);
+            this.setText(tf.getText());
+            refresh();
+        }
+
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane ui = new GridPane();
@@ -35,6 +76,9 @@ public class Main extends Application {
 
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
+        ui.add(new EditableLabel(map.getPlayer().getTileName()),0,2);
+
+
 
         BorderPane borderPane = new BorderPane();
 
