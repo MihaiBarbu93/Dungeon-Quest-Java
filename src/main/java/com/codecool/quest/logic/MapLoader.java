@@ -46,7 +46,7 @@ public class MapLoader {
                             cell.setType(CellType.KEY);
                             break;
                         case 'a':
-                            cell.setType(CellType.ARMOR);
+                            cell.setType(CellType.HELMET);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
