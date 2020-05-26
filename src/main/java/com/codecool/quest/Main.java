@@ -41,10 +41,6 @@ public class Main extends Application {
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
-
-
-
-
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
 
