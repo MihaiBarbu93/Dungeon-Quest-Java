@@ -53,6 +53,7 @@ public class Main extends Application {
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case UP:
+//                map.getPlayer().getCell().getType()
                 map.getPlayer().move(0, -1);
                 refresh();
                 break;
