@@ -45,7 +45,7 @@ public class MapLoader {
                         case 'k':
                             cell.setType(CellType.KEY);
                             break;
-                        case 'a':
+                        case 'h':
                             cell.setType(CellType.HELMET);
                             break;
                         case 'D':
