@@ -18,7 +18,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
+
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
@@ -80,6 +82,8 @@ public class Main extends Application {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
+
+
         switch (keyEvent.getCode()) {
             case UP:
 //                map.getPlayer().getCell().getType()
