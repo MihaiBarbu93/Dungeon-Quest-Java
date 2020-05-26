@@ -5,7 +5,10 @@ import com.codecool.quest.logic.actors.Skeleton;
 public enum CellType {
     EMPTY("empty"),
     FLOOR("floor"),
-    WALL("wall");
+    WALL("wall"),
+    WEAPON("weapon"),
+    KEY("key"),
+    HELMET("helmet");
 
 
 

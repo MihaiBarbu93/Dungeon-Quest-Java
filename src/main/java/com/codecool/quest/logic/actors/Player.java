@@ -8,6 +8,8 @@ public class Player extends Actor {
         super(cell);
     }
 
+
+
     public String getTileName() {
         return "player";
     }
