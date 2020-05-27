@@ -1,6 +1,7 @@
 package com.codecool.quest;
 
 import com.codecool.quest.logic.Cell;
+import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
 import com.codecool.quest.logic.actors.Actor;
@@ -10,20 +11,27 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
+
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+
+    static Button Pickup = new Button("Pick Up");
+
 
     public static void main(String[] args) {
         launch(args);
@@ -38,6 +46,8 @@ public class Main extends Application {
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
 
+        ui.add(Pickup,0,5);
+
         BorderPane borderPane = new BorderPane();
 
         borderPane.setCenter(canvas);
@@ -50,23 +60,43 @@ public class Main extends Application {
 
         primaryStage.setTitle("Codecool Quest");
         primaryStage.show();
+
+
+        Pickup.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                e -> {
+                    for (int x = 0; x < map.getWidth(); x++) {
+                        for (int y = 0; y < map.getHeight(); y++) {
+                            Cell cell = map.getCell(x, y);
+                            if (cell.getTileName().equals("weapon") && cell.getActor() != null) {
+                                cell.setType(CellType.FLOOR);
+                            } else if (cell.getTileName().equals("key") && cell.getActor() != null ) {
+                                cell.setType(CellType.FLOOR);
+                            } else if (cell.getTileName().equals("helmet") && cell.getActor() != null) {
+                                cell.setType(CellType.FLOOR);
+                            }
+                        }
+                    }
+                });
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
+
+
         switch (keyEvent.getCode()) {
-            case UP:
+            case W:
+//                map.getPlayer().getCell().getType()
                 map.getPlayer().move(0, -1);
                 refresh();
                 break;
-            case DOWN:
+            case S:
                 map.getPlayer().move(0, 1);
                 refresh();
                 break;
-            case LEFT:
+            case A:
                 map.getPlayer().move(-1, 0);
                 refresh();
                 break;
-            case RIGHT:
+            case D:
                 map.getPlayer().move(1,0);
                 refresh();
                 break;
