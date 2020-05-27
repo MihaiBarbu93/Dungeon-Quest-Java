@@ -25,6 +25,7 @@ public class Main extends Application {
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    Label l1 =  new EditableLabel(map.getPlayer().getTileName());
 
     public static void main(String[] args) {
         launch(args);
@@ -44,15 +45,16 @@ public class Main extends Application {
                     tf.requestFocus();
                 }
             });
-            tf.focusedProperty().addListener((prop, o, n) -> {
-                if(!n){
-                    toLabel();
-                }
-            });
+//            tf.focusedProperty().addListener((prop, o, n) -> {
+//                if(!n){
+//                    toLabel();
+//                }
+//            });
             tf.setOnKeyReleased(e -> {
                 if(e.getCode().equals(KeyCode.ENTER)){
                     toLabel();
-                    map.getPlayer().setName(tf.getText());
+                    map.getPlayer().setPlayerName(tf.getText());
+//                    map.getCell() l1.getText();
                 }else if(e.getCode().equals(KeyCode.ESCAPE)){
                     tf.setText(backup);
                     toLabel();
@@ -63,7 +65,9 @@ public class Main extends Application {
         void toLabel(){
             this.setGraphic(null);
             this.setText(tf.getText());
-            refresh();
+
+
+//
         }
 
     }
@@ -76,7 +80,8 @@ public class Main extends Application {
 
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
-        ui.add(new EditableLabel(map.getPlayer().getTileName()),0,2);
+        ui.add(l1,0,2);
+
 
 
 
@@ -96,20 +101,20 @@ public class Main extends Application {
 
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
-            case UP:
+            case W:
 //                map.getPlayer().getCell().getType()
                 map.getPlayer().move(0, -1);
                 refresh();
                 break;
-            case DOWN:
+            case S:
                 map.getPlayer().move(0, 1);
                 refresh();
                 break;
-            case LEFT:
+            case A:
                 map.getPlayer().move(-1, 0);
                 refresh();
                 break;
-            case RIGHT:
+            case D:
                 map.getPlayer().move(1,0);
                 refresh();
                 break;
@@ -130,5 +135,6 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+
     }
 }
