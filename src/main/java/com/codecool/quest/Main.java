@@ -120,6 +120,8 @@ public class Main extends Application {
                                 cell.setType(CellType.FLOOR);
                             } else if (cell.getTileName().equals("helmet") && cell.getActor() != null) {
                                 cell.setType(CellType.FLOOR);
+                            }else if (cell.getTileName().equals("fish") && cell.getActor() != null) {
+                                cell.setType(CellType.FLOOR);
                             }
                         }
                     }

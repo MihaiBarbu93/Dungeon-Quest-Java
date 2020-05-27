@@ -45,12 +45,13 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
-        if (nextCell.getType()!=CellType.WALL && nextCell.getActor()==null){
+        if (nextCell.getType()!=CellType.WALL && nextCell.getActor()==null && nextCell.getType()!=CellType.PINE &&
+                nextCell.getType()!=CellType.TREE && nextCell.getType()!=CellType.RIVER1 && nextCell.getType()!=CellType.RIVER2){
             this.getCell().setActor(null);
             nextCell.setActor(this);
             this.setCell(nextCell);
         }
-        if (checkPlayers(getPlayerName())){
+        if (nextCell.getType()==CellType.WALL && checkPlayers(getPlayerName())){
             this.getCell().setActor(null);
             nextCell.setActor(this);
             this.setCell(nextCell);
