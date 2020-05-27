@@ -13,6 +13,7 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
+
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
         if (nextCell.getType()!=CellType.WALL && nextCell.getActor()==null && nextCell.getType()!=CellType.DOOR){
@@ -22,12 +23,18 @@ public abstract class Actor implements Drawable {
         }
     }
 
+
+
     public int getHealth() {
         return health;
     }
 
     public Cell getCell() {
         return cell;
+    }
+
+    public void setCell(Cell cell) {
+        this.cell = cell;
     }
 
     public int getX() {
