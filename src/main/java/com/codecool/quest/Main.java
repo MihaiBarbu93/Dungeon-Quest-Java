@@ -6,6 +6,7 @@ import com.codecool.quest.logic.GameMap;
 import com.codecool.quest.logic.MapLoader;
 import com.codecool.quest.logic.actors.Actor;
 import com.codecool.quest.logic.actors.Player;
+import com.codecool.quest.logic.actors.Skeleton;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -166,7 +167,6 @@ public class Main extends Application {
 
         switch (keyEvent.getCode()) {
             case W:
-//                map.getPlayer().getCell().getType()
                 map.getPlayer().move(0, -1);
                 refresh();
                 break;
@@ -203,8 +203,6 @@ public class Main extends Application {
         healthLabel.setText("Health:" + map.getPlayer().getHealth());
         attackLabel.setText("Attack:" + map.getPlayer().getAttack());
         defenseLabel.setText("Defense:" + map.getPlayer().getDefense());
-    }
-    private void attack(){
     }
 }
 

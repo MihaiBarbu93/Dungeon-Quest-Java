@@ -1,11 +1,35 @@
 package com.codecool.quest.logic.actors;
 
+import com.codecool.quest.Main;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.actors.Actor;
 
 public class Player extends Actor {
+    private int health = 10;
+    private int attack=2;
+    private int defense =0;
 
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+    public int getAttack() {
+        return attack;
+    }
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
 
 
     private String PlayerName="player";
@@ -51,11 +75,42 @@ public class Player extends Actor {
             this.getCell().setActor(null);
             nextCell.setActor(this);
             this.setCell(nextCell);
+
         }
         if (nextCell.getType()==CellType.WALL && checkPlayers(getPlayerName())){
             this.getCell().setActor(null);
             nextCell.setActor(this);
             this.setCell(nextCell);
         }
+        else {
+            attack(this.getCell(),nextCell);
+        }
     }
-}
+
+    @Override
+    public void loseHealth(int damaghe) {
+        this.health-=damaghe;
+    }
+
+    //    public void attack(){
+//        Cell nextCell = this.getCell().getNeighbor(-1, 0);
+//        if (nextCell.getTileName().equals("skeleton")){
+//            System.out.println("attack!");
+//        }
+//    }
+    public void attack(Cell cell, Cell nextCell){
+        Player attacker = (Player) cell.getActor();
+        if (nextCell.getActor().getTileName().equals("skeleton")) {
+            ((Skeleton) nextCell.getActor()).loseHealth(attacker.getAttack());
+            if (((Skeleton) nextCell.getActor()).SkeletonHealth <= 0) {
+                nextCell.setActor(null);
+                System.out.println("daaa");
+                } else attacker.loseHealth(((Skeleton) nextCell.getActor()).SkeletonDamage);
+                if (attacker.getHealth() <= 0) {
+                    attacker.getCell().setActor(null);
+                }
+            }
+        }
+    }
+
+
