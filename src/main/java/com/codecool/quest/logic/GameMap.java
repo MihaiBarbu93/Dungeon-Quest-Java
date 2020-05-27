@@ -24,6 +24,11 @@ public class GameMap {
         return cells[x][y];
     }
 
+    public void setCells(Cell[][] cells) {
+        this.cells = cells;
+    }
+
+
     public void setPlayer(Player player) {
         this.player = player;
     }

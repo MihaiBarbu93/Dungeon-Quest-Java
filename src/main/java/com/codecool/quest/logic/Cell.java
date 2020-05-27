@@ -8,6 +8,7 @@ public class Cell implements Drawable {
     private GameMap gameMap;
     private int x, y;
 
+
     Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
         this.x = x;
@@ -36,6 +37,11 @@ public class Cell implements Drawable {
     public Cell getNeighbor(int dx, int dy) {
         return gameMap.getCell(x + dx, y + dy);
     }
+
+    public void setNeighbor(int dx,int dy ){
+        Cell[][] neighbourCell=  new Cell[dx][dy];
+        gameMap.setCells(neighbourCell);
+    };
 
     @Override
     public String getTileName() {

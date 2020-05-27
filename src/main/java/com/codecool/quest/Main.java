@@ -121,8 +121,10 @@ public class Main extends Application {
                     for (int x = 0; x < map.getWidth(); x++) {
                         for (int y = 0; y < map.getHeight(); y++) {
                             Cell cell = map.getCell(x, y);
+                            Cell cellBear=map.getCell(x,y);
                             if (cell.getTileName().equals("floor") && cell.getActor() != null) {
                                 cell.setType(CellType.FISH);
+                                cellBear.setType(CellType.BEAR);
                                 itemsList.getItems().remove("fish");
                                 refresh();
                             }
