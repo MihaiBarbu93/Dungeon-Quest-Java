@@ -41,6 +41,8 @@ public class Main extends Application {
     Label defenseLabel = new Label();
     static Button Pickup = new Button("Pick Up");
     static Button DropItem = new Button("Drop");
+    static Button OpenDoor = new Button("Open");
+    ArrayList<String> itemsListArray = new ArrayList<>();
 
 
 
@@ -86,8 +88,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         ObservableList<String> items= FXCollections.observableArrayList();
         ListView<String> itemsList= new ListView<>(items);
+
         itemsList.prefWidth(20);
         itemsList.prefHeight(10);
         GridPane ui = new GridPane();
@@ -100,8 +104,9 @@ public class Main extends Application {
         ui.add(defenseLabel,0,3);
         ui.add(Pickup,0,5);
         ui.add(DropItem,0,6);
-        ui.add(new Label("Inventory: "), 0, 7);
-        ui.add(itemsList,0,8);
+        ui.add(OpenDoor,0,7);
+        ui.add(new Label("Inventory: "), 0, 8);
+        ui.add(itemsList,0,9);
 
         BorderPane borderPane = new BorderPane();
 
@@ -142,23 +147,30 @@ public class Main extends Application {
                                 map.getPlayer().setAttack(map.getPlayer().getAttack()+5);
                                 refresh();
                                 items.add(cell.getTileName());
+                                itemsListArray.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
                             } else if (cell.getTileName().equals("key") && cell.getActor() != null ) {
                                 items.add(cell.getTileName());
+                                itemsListArray.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
                             } else if (cell.getTileName().equals("helmet") && cell.getActor() != null) {
                                 map.getPlayer().setDefense(map.getPlayer().getDefense()+2);
                                 refresh();
                                 items.add(cell.getTileName());
+                                itemsListArray.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
                             }else if (cell.getTileName().equals("fish") && cell.getActor() != null) {
                                 items.add(cell.getTileName());
+                                itemsListArray.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
 
                             }
                         }
                     }
                 });
+
+        // OPEN DOOR
+
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
@@ -182,6 +194,21 @@ public class Main extends Application {
                 map.getPlayer().move(1,0);
                 refresh();
                 break;
+            case Y:
+                System.out.println("Open the door");
+                System.out.println(itemsListArray.toString());
+                if (itemsListArray.contains("key")  ) {
+                    System.out.println("Inventory contains key");
+                    int playerX = map.getPlayer().getX();
+                    int playerY = map.getPlayer().getY();
+                    Cell possibleDoorCell = map.getCell(playerX, playerY - 1);
+                    if (possibleDoorCell.getType() == CellType.DOOR) {
+                        System.out.println("Possible door = type door");
+                        possibleDoorCell.setType(CellType.OPEN_DOOR);
+                        refresh();
+                    }
+
+                }
         }
     }
 
