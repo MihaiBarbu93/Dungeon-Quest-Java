@@ -40,6 +40,7 @@ public class Main extends Application {
     Label attackLabel = new Label();
     Label defenseLabel = new Label();
     static Button Pickup = new Button("Pick Up");
+    static Button DropItem = new Button("Drop");
 
 
 
@@ -61,11 +62,6 @@ public class Main extends Application {
                     tf.requestFocus();
                 }
             });
-//            tf.focusedProperty().addListener((prop, o, n) -> {
-//                if(!n){
-//                    toLabel();
-//                }
-//            });
             tf.setOnKeyReleased(e -> {
                 if(e.getCode().equals(KeyCode.ENTER)){
                     toLabel();
@@ -103,8 +99,9 @@ public class Main extends Application {
         ui.add(attackLabel, 0, 2);
         ui.add(defenseLabel,0,3);
         ui.add(Pickup,0,5);
-        ui.add(new Label("Inventory: "), 0, 6);
-        ui.add(itemsList,0,7);
+        ui.add(DropItem,0,6);
+        ui.add(new Label("Inventory: "), 0, 7);
+        ui.add(itemsList,0,8);
 
         BorderPane borderPane = new BorderPane();
 
@@ -118,8 +115,22 @@ public class Main extends Application {
 
         primaryStage.setTitle("Codecool Quest");
         primaryStage.show();
+        // DROP
+        DropItem.addEventHandler(MouseEvent.MOUSE_CLICKED,
+                e -> {
+                    for (int x = 0; x < map.getWidth(); x++) {
+                        for (int y = 0; y < map.getHeight(); y++) {
+                            Cell cell = map.getCell(x, y);
+                            if (cell.getTileName().equals("floor") && cell.getActor() != null) {
+                                cell.setType(CellType.FISH);
+                                itemsList.getItems().remove("fish");
+                                refresh();
+                            }
+                        }
+                    }
+                });
 
-
+        //PICK UP
         Pickup.addEventHandler(MouseEvent.MOUSE_CLICKED,
                 e -> {
                     for (int x = 0; x < map.getWidth(); x++) {
@@ -139,7 +150,9 @@ public class Main extends Application {
                                 items.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
                             }else if (cell.getTileName().equals("fish") && cell.getActor() != null) {
+                                items.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
+
                             }
                         }
                     }
