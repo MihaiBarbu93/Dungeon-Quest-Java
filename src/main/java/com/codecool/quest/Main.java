@@ -30,7 +30,14 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-    GameMap map = MapLoader.loadMap();
+    boolean levelFinished = false;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+
+    GameMap map = MapLoader.loadMap(levelFinished);
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
@@ -44,11 +51,6 @@ public class Main extends Application {
     static Button OpenDoor = new Button("Open");
     ArrayList<String> itemsListArray = new ArrayList<>();
 
-
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 
     class EditableLabel extends Label{
         TextField tf = new TextField();
@@ -195,19 +197,16 @@ public class Main extends Application {
                 refresh();
                 break;
             case Y:
-                System.out.println("Open the door");
                 System.out.println(itemsListArray.toString());
                 if (itemsListArray.contains("key")  ) {
-                    System.out.println("Inventory contains key");
                     int playerX = map.getPlayer().getX();
                     int playerY = map.getPlayer().getY();
                     Cell possibleDoorCell = map.getCell(playerX, playerY - 1);
                     if (possibleDoorCell.getType() == CellType.DOOR) {
-                        System.out.println("Possible door = type door");
                         possibleDoorCell.setType(CellType.OPEN_DOOR);
+                        levelFinished = true;
                         refresh();
                     }
-
                 }
         }
     }

@@ -44,4 +44,8 @@ public class GameMap {
     public int getHeight() {
         return height;
     }
+
+    public void nextLevel() {
+
+    }
 }

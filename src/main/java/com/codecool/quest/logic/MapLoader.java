@@ -10,15 +10,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MapLoader {
-    public static GameMap loadMap() {
+
+    public static GameMap loadMap(boolean levelFinished) {
         List<String> maps = new ArrayList<>();
-        Collections.addAll(maps, "/map3.txt", "/map2.txt", "/map3.txt");
-        int randMap = (int) (Math.random() * 3);
-        InputStream is = MapLoader.class.getResourceAsStream(maps.get(randMap));
+        InputStream is;
+        if (!levelFinished) {
+            Collections.addAll(maps, "/map1.txt", "/map2.txt", "/map3.txt");
+            int randMap = (int) (Math.random() * 3);
+            is = MapLoader.class.getResourceAsStream(maps.get(randMap));
+        } else {
+            is = MapLoader.class.getResourceAsStream("/map4.txt");
+        }
+
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
         int height = scanner.nextInt();
-
         scanner.nextLine(); // empty line
 
         GameMap map = new GameMap(width, height, CellType.EMPTY);
@@ -86,5 +92,6 @@ public class MapLoader {
         }
         return map;
     }
+
 
 }
