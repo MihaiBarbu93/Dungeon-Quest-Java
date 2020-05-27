@@ -81,20 +81,20 @@ public class Main extends Application {
 
 
         switch (keyEvent.getCode()) {
-            case UP:
+            case W:
 //                map.getPlayer().getCell().getType()
                 map.getPlayer().move(0, -1);
                 refresh();
                 break;
-            case DOWN:
+            case S:
                 map.getPlayer().move(0, 1);
                 refresh();
                 break;
-            case LEFT:
+            case A:
                 map.getPlayer().move(-1, 0);
                 refresh();
                 break;
-            case RIGHT:
+            case D:
                 map.getPlayer().move(1,0);
                 refresh();
                 break;
