@@ -31,6 +31,8 @@ public class Cell implements Drawable {
         return actor;
     }
 
+
+
     public Cell getNeighbor(int dx, int dy) {
         return gameMap.getCell(x + dx, y + dy);
     }

@@ -13,6 +13,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -29,12 +31,54 @@ public class Main extends Application {
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    Label l1 =  new EditableLabel(map.getPlayer().getTileName());
 
     static Button Pickup = new Button("Pick Up");
 
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    class EditableLabel extends Label{
+        TextField tf = new TextField();
+        String backup = "";
+
+        public EditableLabel(String str){
+            super(str);
+            this.setOnMouseClicked(e -> {
+                if(e.getClickCount() == 2){
+                    tf.setText(backup = this.getText());
+                    this.setGraphic(tf);
+                    this.setText("");
+                    tf.requestFocus();
+                }
+            });
+//            tf.focusedProperty().addListener((prop, o, n) -> {
+//                if(!n){
+//                    toLabel();
+//                }
+//            });
+            tf.setOnKeyReleased(e -> {
+                if(e.getCode().equals(KeyCode.ENTER)){
+                    toLabel();
+                    map.getPlayer().setPlayerName(tf.getText());
+//                    map.getCell() l1.getText();
+                }else if(e.getCode().equals(KeyCode.ESCAPE)){
+                    tf.setText(backup);
+                    toLabel();
+                }
+            });
+        }
+
+        void toLabel(){
+            this.setGraphic(null);
+            this.setText(tf.getText());
+
+
+//
+        }
+
     }
 
     @Override
@@ -45,6 +89,10 @@ public class Main extends Application {
 
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
+        ui.add(l1,0,2);
+
+
+
 
         ui.add(Pickup,0,5);
 
@@ -62,7 +110,7 @@ public class Main extends Application {
         primaryStage.show();
 
 
-        Pickup.addEventHandler(MouseEvent.MOUSE_ENTERED,
+        Pickup.addEventHandler(MouseEvent.MOUSE_CLICKED,
                 e -> {
                     for (int x = 0; x < map.getWidth(); x++) {
                         for (int y = 0; y < map.getHeight(); y++) {
@@ -72,6 +120,8 @@ public class Main extends Application {
                             } else if (cell.getTileName().equals("key") && cell.getActor() != null ) {
                                 cell.setType(CellType.FLOOR);
                             } else if (cell.getTileName().equals("helmet") && cell.getActor() != null) {
+                                cell.setType(CellType.FLOOR);
+                            }else if (cell.getTileName().equals("fish") && cell.getActor() != null) {
                                 cell.setType(CellType.FLOOR);
                             }
                         }
@@ -117,6 +167,7 @@ public class Main extends Application {
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+
     }
     private void attack(){
     }
