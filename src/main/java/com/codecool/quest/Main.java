@@ -144,10 +144,11 @@ public class Main extends Application {
                                 refresh();
                                 items.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
+                                map.setPlayer(new Player(cell));
                             } else if (cell.getTileName().equals("key") && cell.getActor() != null ) {
                                 items.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
-                            } else if (cell.getTileName().equals("helmet") && cell.getActor() != null) {
+                            } else if (cell.getTileName().equals("armour") && cell.getActor() != null) {
                                 map.getPlayer().setDefense(map.getPlayer().getDefense()+2);
                                 refresh();
                                 items.add(cell.getTileName());

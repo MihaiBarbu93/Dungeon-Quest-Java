@@ -8,7 +8,7 @@ public enum CellType {
     WALL("wall"),
     WEAPON("weapon"),
     KEY("key"),
-    HELMET("helmet"),
+    HELMET("armour"),
     DOOR("door"),
     OPEN_DOOR("open door"),
     TREE("tree"),

@@ -5,6 +5,8 @@ import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.actors.Actor;
 
+import java.util.List;
+
 public class Player extends Actor {
     private int health = 10;
     private int attack=2;
@@ -38,7 +40,9 @@ public class Player extends Actor {
         super(cell);
     }
 
-
+    public List<Item> get_inventory(){
+        return
+    }
 
     public String getTileName() {
         return "player";
@@ -92,12 +96,6 @@ public class Player extends Actor {
         this.health-=damaghe;
     }
 
-    //    public void attack(){
-//        Cell nextCell = this.getCell().getNeighbor(-1, 0);
-//        if (nextCell.getTileName().equals("skeleton")){
-//            System.out.println("attack!");
-//        }
-//    }
     public void attack(Cell cell, Cell nextCell){
         Player attacker = (Player) cell.getActor();
         if (nextCell.getActor().getTileName().equals("skeleton")) {
