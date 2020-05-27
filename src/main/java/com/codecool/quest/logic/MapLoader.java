@@ -11,16 +11,17 @@ import java.util.Scanner;
 
 public class MapLoader {
 
-    public static GameMap loadMap(boolean levelFinished) {
-        List<String> maps = new ArrayList<>();
-        InputStream is;
-        if (!levelFinished) {
-            Collections.addAll(maps, "/map1.txt", "/map2.txt", "/map3.txt");
-            int randMap = (int) (Math.random() * 3);
-            is = MapLoader.class.getResourceAsStream(maps.get(randMap));
-        } else {
-            is = MapLoader.class.getResourceAsStream("/map4.txt");
-        }
+
+//    public static List<String> maps = new ArrayList<>();
+//    Collections.addAll(maps, "/map1.txt", "/map2.txt", "/map3.txt");
+//
+//    public static int randMap = (int) (Math.random() * 3);
+    public static String currentMap ="/map1.txt";
+
+
+    public static GameMap loadMap() {
+
+        InputStream is = MapLoader.class.getResourceAsStream(currentMap);
 
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();
