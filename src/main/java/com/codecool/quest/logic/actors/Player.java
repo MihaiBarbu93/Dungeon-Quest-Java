@@ -8,7 +8,7 @@ import com.codecool.quest.logic.actors.Actor;
 import java.util.List;
 
 public class Player extends Actor {
-    private int health = 10;
+    private int health = 20;
     private int attack=2;
     private int defense =0;
 
@@ -23,9 +23,13 @@ public class Player extends Actor {
     public int getAttack() {
         return attack;
     }
+
+
     public void setHealth(int health) {
         this.health = health;
     }
+
+
     public void setAttack(int attack) {
         this.attack = attack;
     }
@@ -40,9 +44,6 @@ public class Player extends Actor {
         super(cell);
     }
 
-    public List<Item> get_inventory(){
-        return
-    }
 
     public String getTileName() {
         return "player";
@@ -102,13 +103,16 @@ public class Player extends Actor {
             ((Skeleton) nextCell.getActor()).loseHealth(attacker.getAttack());
             if (((Skeleton) nextCell.getActor()).SkeletonHealth <= 0) {
                 nextCell.setActor(null);
-                System.out.println("daaa");
-                } else attacker.loseHealth(((Skeleton) nextCell.getActor()).SkeletonDamage);
+                nextCell.isDead();
+                } else attacker.loseHealth(((Skeleton) nextCell.getActor()).SkeletonDamage - 1);
                 if (attacker.getHealth() <= 0) {
                     attacker.getCell().setActor(null);
                 }
             }
         }
+
+
+
     }
 
 

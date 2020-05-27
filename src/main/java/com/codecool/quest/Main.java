@@ -139,12 +139,11 @@ public class Main extends Application {
                     for (int x = 0; x < map.getWidth(); x++) {
                         for (int y = 0; y < map.getHeight(); y++) {
                             Cell cell = map.getCell(x, y);
+                            Player player = map.getPlayer();
                             if (cell.getTileName().equals("weapon") && cell.getActor() != null) {
-                                map.getPlayer().setAttack(map.getPlayer().getAttack()+5);
                                 refresh();
                                 items.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
-                                map.setPlayer(new Player(cell));
                             } else if (cell.getTileName().equals("key") && cell.getActor() != null ) {
                                 items.add(cell.getTileName());
                                 cell.setType(CellType.FLOOR);
