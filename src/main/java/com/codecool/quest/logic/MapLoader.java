@@ -78,6 +78,9 @@ public class MapLoader {
                         case 'f':
                             cell.setType(CellType.FISH);
                             break;
+                        case 'g':
+                            cell.setType(CellType.GHOST);
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

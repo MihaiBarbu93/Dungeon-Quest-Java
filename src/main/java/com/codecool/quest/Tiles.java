@@ -24,22 +24,38 @@ public class Tiles {
     }
 
     static {
+
+        // enviroment
         tileMap.put("empty", new Tile(0, 0));
         tileMap.put("wall", new Tile(10, 17));
         tileMap.put("floor", new Tile(2, 0));
-        tileMap.put("player", new Tile(25, 0));
-        tileMap.put("skeleton", new Tile(29, 6));
-        tileMap.put("weapon", new Tile(3, 30));
-        tileMap.put("key", new Tile(16, 23));
-        tileMap.put("helmet",new Tile(3, 22));
-        tileMap.put("door", new Tile(6, 4));
-        tileMap.put("open door", new Tile(4, 4));
         tileMap.put("tree", new Tile(4, 2));
         tileMap.put("pine", new Tile(3, 2));
-        tileMap.put("bear", new Tile(30, 8));
         tileMap.put("river1", new Tile(8, 4));
         tileMap.put("river2", new Tile(8, 5));
+
+
+        //player
+        tileMap.put("player", new Tile(25, 0));
+
+        //enemies
+        tileMap.put("skeleton", new Tile(29, 6));
+        tileMap.put("bear", new Tile(30, 8));
+        tileMap.put("ghost", new Tile(26, 6));
+
+
+        // armor and items
+        tileMap.put("weapon", new Tile(3, 30));
+        tileMap.put("key", new Tile(16, 23));
         tileMap.put("fish", new Tile(17, 29));
+        tileMap.put("helmet",new Tile(3, 22));
+
+
+        //doors
+        tileMap.put("door", new Tile(6, 4));
+        tileMap.put("open door", new Tile(4, 4));
+
+
 
     }
 

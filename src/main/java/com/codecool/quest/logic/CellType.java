@@ -16,7 +16,8 @@ public enum CellType {
     BEAR("bear"),
     RIVER1("river1"),
     RIVER2("river2"),
-    FISH("fish");
+    FISH("fish"),
+    GHOST("ghost");
 
     private final String tileName;
 
