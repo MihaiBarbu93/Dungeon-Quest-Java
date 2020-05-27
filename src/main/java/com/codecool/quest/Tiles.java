@@ -52,8 +52,8 @@ public class Tiles {
 
 
         //doors
-        tileMap.put("door", new Tile(6, 4));
-        tileMap.put("open door", new Tile(4, 4));
+        tileMap.put("door", new Tile(3, 3));
+        tileMap.put("open door", new Tile(4, 3));
 
 
 

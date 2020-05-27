@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class MapLoader {
     public static GameMap loadMap() {
         List<String> maps = new ArrayList<>();
-        Collections.addAll(maps, "/map3.txt", "/map2.txt", "/map3.txt");
+        Collections.addAll(maps, "/map1.txt", "/map2.txt", "/map3.txt");
         int randMap = (int) (Math.random() * 3);
         InputStream is = MapLoader.class.getResourceAsStream(maps.get(randMap));
         Scanner scanner = new Scanner(is);
