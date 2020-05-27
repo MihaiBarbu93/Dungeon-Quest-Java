@@ -36,7 +36,7 @@ public class Main extends Application {
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
-    Label l1 =  new EditableLabel(map.getPlayer().getTileName());
+    Label playerName =  new EditableLabel(map.getPlayer().getTileName());
     Label attackLabel = new Label();
     Label defenseLabel = new Label();
     static Button Pickup = new Button("Pick Up");
@@ -97,13 +97,11 @@ public class Main extends Application {
         GridPane ui = new GridPane();
         ui.setPrefWidth(300);
         ui.setPadding(new Insets(10));
-        ui.add(new Label("Health: "), 0, 0);
-        ui.add(healthLabel, 1, 0);
-        ui.add(l1,0,2);
+        ui.add(playerName,0,0);
         ui.setVgap(5);
-        ui.add(healthLabel, 0, 0);
-        ui.add(attackLabel, 0, 1);
-        ui.add(defenseLabel,0,2);
+        ui.add(healthLabel, 0, 1);
+        ui.add(attackLabel, 0, 2);
+        ui.add(defenseLabel,0,3);
         ui.add(Pickup,0,5);
         ui.add(new Label("Inventory: "), 0, 6);
         ui.add(itemsList,0,7);
