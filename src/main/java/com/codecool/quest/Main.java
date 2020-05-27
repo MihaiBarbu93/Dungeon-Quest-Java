@@ -109,7 +109,7 @@ public class Main extends Application {
         primaryStage.show();
 
 
-        Pickup.addEventHandler(MouseEvent.MOUSE_ENTERED,
+        Pickup.addEventHandler(MouseEvent.MOUSE_CLICKED,
                 e -> {
                     for (int x = 0; x < map.getWidth(); x++) {
                         for (int y = 0; y < map.getHeight(); y++) {
