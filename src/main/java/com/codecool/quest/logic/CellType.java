@@ -17,7 +17,18 @@ public enum CellType {
     RIVER1("river1"),
     RIVER2("river2"),
     FISH("fish"),
-    BRIDGE("bridge");
+    BRIDGE("bridge"),
+    LETTERG("letterG"),
+    LETTERA("letterA"),
+    LETTERM("letterM"),
+    LETTERE("letterE"),
+    LETTERO("letterO"),
+    LETTERV("letterV"),
+    LETTERR("letterR"),
+    LETTERL("letterL"),
+    DIGIT2("digit2"),
+    EXCLAMATION("sign!"),
+    LADDER("ladder");
 
     private final String tileName;
 

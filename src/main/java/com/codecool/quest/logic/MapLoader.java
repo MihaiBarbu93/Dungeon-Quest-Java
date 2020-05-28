@@ -5,21 +5,25 @@ import com.codecool.quest.logic.actors.Skeleton;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class MapLoader {
 
 
-//    public static List<String> maps = new ArrayList<>();
-//    Collections.addAll(maps, "/map1.txt", "/map2.txt", "/map3.txt");
-//
-//    public static int randMap = (int) (Math.random() * 3);
-    public static String currentMap ="/map1.txt";
+    public static List<String> mapsList = new ArrayList<>() {{
+        add("/map1.txt");
+        add("/map2.txt");
+        add("/map3.txt");
+    }};
+
+    public static int randMap = (int) (Math.random() * 3);
+
+    public static String currentMap = mapsList.get(randMap);
 
 
     public static GameMap loadMap() {
+
 
         InputStream is = MapLoader.class.getResourceAsStream(currentMap);
 
@@ -80,13 +84,49 @@ public class MapLoader {
                             cell.setType(CellType.RIVER1);
                             break;
                         case 'R':
-                            cell.setType(CellType.RIVER2);
-                            break;
+                            if (currentMap == "/map1.txt" || currentMap == "/map2.txt" ||
+                                    currentMap == "/map3.txt" || currentMap == "/map4.txt") {
+                                cell.setType(CellType.RIVER2);
+                                break;
+                            } else {
+                                cell.setType(CellType.LETTERR);
+                                break;
+                            }
                         case 'f':
                             cell.setType(CellType.FISH);
                             break;
                         case 'e':
                             cell.setType(CellType.BRIDGE);
+                            break;
+                        case 'G':
+                            cell.setType(CellType.LETTERG);
+                            break;
+                        case 'A':
+                            cell.setType(CellType.LETTERA);
+                            break;
+                        case 'M':
+                            cell.setType(CellType.LETTERM);
+                            break;
+                        case 'E':
+                            cell.setType(CellType.LETTERE);
+                            break;
+                        case '0':
+                            cell.setType(CellType.LETTERO);
+                            break;
+                        case 'V':
+                            cell.setType(CellType.LETTERV);
+                            break;
+                        case 'L':
+                            cell.setType(CellType.LETTERL);
+                            break;
+                        case '2':
+                            cell.setType(CellType.DIGIT2);
+                            break;
+                        case '!':
+                            cell.setType(CellType.EXCLAMATION);
+                            break;
+                        case 'U':
+                            cell.setType(CellType.LADDER);
                             break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
@@ -94,6 +134,7 @@ public class MapLoader {
                 }
             }
         }
+
         return map;
     }
 

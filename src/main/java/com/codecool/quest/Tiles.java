@@ -41,6 +41,18 @@ public class Tiles {
         tileMap.put("river2", new Tile(8, 5));
         tileMap.put("fish", new Tile(17, 29));
         tileMap.put("bride", new Tile(5,4));
+        tileMap.put("letterG", new Tile(25, 30));
+        tileMap.put("letterA", new Tile(19, 30));
+        tileMap.put("letterM", new Tile(31, 30));
+        tileMap.put("letterE", new Tile(23, 30));
+        tileMap.put("letterO", new Tile(20, 31));
+        tileMap.put("letterV", new Tile(27, 31));
+        tileMap.put("letterR", new Tile(23, 31));
+        tileMap.put("letterL", new Tile(30, 30));
+        tileMap.put("digit2", new Tile(21, 29));
+        tileMap.put("sign!", new Tile(19, 25));
+        tileMap.put("ladder", new Tile(0, 5));
+
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
