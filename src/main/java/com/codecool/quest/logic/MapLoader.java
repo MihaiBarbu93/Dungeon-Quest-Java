@@ -128,6 +128,9 @@ public class MapLoader {
                         case 'U':
                             cell.setType(CellType.LADDER);
                             break;
+                        case 'N':
+                            cell.setType(CellType.DOWNLADDER);
+                            break;
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

@@ -51,7 +51,8 @@ public class Tiles {
         tileMap.put("letterL", new Tile(30, 30));
         tileMap.put("digit2", new Tile(21, 29));
         tileMap.put("sign!", new Tile(19, 25));
-        tileMap.put("ladder", new Tile(0, 5));
+        tileMap.put("upladder", new Tile(0, 5));
+        tileMap.put("downladder", new Tile(4, 5));
 
     }
 

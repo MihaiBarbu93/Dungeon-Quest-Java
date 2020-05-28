@@ -28,7 +28,8 @@ public enum CellType {
     LETTERL("letterL"),
     DIGIT2("digit2"),
     EXCLAMATION("sign!"),
-    LADDER("ladder");
+    LADDER("upladder"),
+    DOWNLADDER("downladder");
 
     private final String tileName;
 

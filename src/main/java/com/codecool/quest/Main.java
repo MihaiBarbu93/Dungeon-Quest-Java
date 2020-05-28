@@ -172,25 +172,34 @@ public class Main extends Application {
                 refresh();
                 break;
             case Y:
+                int playerX=map.getPlayer().getX();
+                int playerY=map.getPlayer().getY();
                 System.out.println(itemsListArray.toString());
                 if (itemsListArray.contains("key")) {
-                    int playerX=map.getPlayer().getX();
-                    int playerY=map.getPlayer().getY();
                     Cell possibleDoorCell=map.getCell(playerX, playerY - 1);
                     if (possibleDoorCell.getType() == CellType.DOOR) {
                         possibleDoorCell.setType(CellType.OPEN_DOOR);
                         refresh();
+                        itemsListArray.remove("key");
+                        System.out.println(itemsListArray + "ItemsListArray");
                         MapLoader.currentMap="/map4.txt";
                         try {
                             Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-
                         map=MapLoader.loadMap();
 
                     }
                 }
+                Cell possibleStairCell = map.getCell(playerX, playerY);
+                if (possibleStairCell.getType() == CellType.LADDER) {
+                    MapLoader.currentMap = "/map5.txt";
+                    map = MapLoader.loadMap();
+                } else if(possibleStairCell.getType() == CellType.DOWNLADDER) {
+                MapLoader.currentMap = "/map4.txt";
+                map = MapLoader.loadMap();
+            }
         }
     }
 
