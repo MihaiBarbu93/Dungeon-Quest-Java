@@ -4,14 +4,25 @@ import com.codecool.quest.Main;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.actors.Actor;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 
-import java.util.List;
+
+import java.util.ArrayList;
+
 
 public class Player extends Actor {
     private int health = 20;
     private int attack=2;
     private int defense =0;
+    private ArrayList<String> inventory = new ArrayList<String>();
+    ObservableList<String> items = FXCollections.observableArrayList(inventory);
+    private ListView<String> itemsList = new ListView<String>(items);
 
+    public ListView<String> getInventory(){
+        return itemsList;
+    }
 
     public int getHealth() {
         return health;
@@ -46,6 +57,18 @@ public class Player extends Actor {
 
 
     public String getTileName() {
+        for(String item : inventory ){
+            if (inventory.contains("weapon") && inventory.contains("armour")){
+                return "fullsetchar";
+            }
+            if (inventory.contains("weapon")) {
+                return "weaponChar";
+            }
+            if (inventory.contains("armour")){
+                return "armourChar";
+            }
+
+        }
         return "player";
     }
 
@@ -111,7 +134,20 @@ public class Player extends Actor {
             }
         }
 
+    public void pickup() {
+        if ((this.getCell().getType() != CellType.FLOOR)) {
+            inventory.add(this.getCell().getTileName());
+            items.add(this.getCell().getTileName());
+            this.getCell().setType(CellType.FLOOR);
+        }
+    }
 
+    public void drop() {
+        if ((this.getCell().getType() != CellType.FISH)) {
+            this.getCell().setType(CellType.FISH);
+            itemsList.getItems().remove("fish");
+        }
+    }
 
     }
 
