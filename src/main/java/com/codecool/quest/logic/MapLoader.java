@@ -63,7 +63,7 @@ public class MapLoader {
                             cell.setType(CellType.KEY);
                             break;
                         case 'h':
-                            cell.setType(CellType.HELMET);
+                            cell.setType(CellType.ARMOUR);
                             break;
                         case 'D':
                             cell.setType(CellType.DOOR);
@@ -85,7 +85,7 @@ public class MapLoader {
                             break;
                         case 'R':
                             if (currentMap == "/map1.txt" || currentMap == "/map2.txt" ||
-                                    currentMap == "/map3.txt" || currentMap == "/map4.txt") {
+                                    currentMap == "/map3.txt" || currentMap == "/map4.txt" || currentMap == "/map5.txt") {
                                 cell.setType(CellType.RIVER2);
                                 break;
                             } else {

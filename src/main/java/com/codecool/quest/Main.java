@@ -41,6 +41,9 @@ public class Main extends Application {
     Label defenseLabel = new Label();
     static Button Pickup = new Button("Pick Up");
     static Button DropItem = new Button("Drop");
+    ObservableList<String> items = FXCollections.observableArrayList();
+    ListView<String> itemsList = map.getPlayer().getInventory();
+    ArrayList itemsListArray = map.getPlayer().getKey();
 
 
 
@@ -86,8 +89,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ObservableList<String> items = FXCollections.observableArrayList();
-        ListView<String> itemsList = map.getPlayer().getInventory();
+
 
         //invetory display
 
@@ -209,6 +211,7 @@ public class Main extends Application {
                 refresh();
                 break;
             case Y:
+
                 int playerX=map.getPlayer().getX();
                 int playerY=map.getPlayer().getY();
                 System.out.println(itemsListArray.toString());
@@ -233,9 +236,11 @@ public class Main extends Application {
                 if (possibleStairCell.getType() == CellType.LADDER) {
                     MapLoader.currentMap = "/map5.txt";
                     map = MapLoader.loadMap();
+                    refresh();
                 } else if(possibleStairCell.getType() == CellType.DOWNLADDER) {
-                MapLoader.currentMap = "/map4.txt";
-                map = MapLoader.loadMap();
+                    MapLoader.currentMap = "/map4.txt";
+                    map = MapLoader.loadMap();
+                    refresh();
             }
         }
     }

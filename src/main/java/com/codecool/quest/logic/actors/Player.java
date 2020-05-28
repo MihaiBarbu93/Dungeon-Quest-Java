@@ -20,6 +20,10 @@ public class Player extends Actor {
     ObservableList<String> items = FXCollections.observableArrayList(inventory);
     private ListView<String> itemsList = new ListView<String>(items);
 
+    public ArrayList<String> getKey(){
+        return inventory;
+    }
+
     public ListView<String> getInventory(){
         return itemsList;
     }
@@ -99,7 +103,7 @@ public class Player extends Actor {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
         if (nextCell.getType()!=CellType.EMPTY && nextCell.getType()!=CellType.WALL && nextCell.getActor()==null && nextCell.getType()!=CellType.PINE &&
                 nextCell.getType()!=CellType.TREE && nextCell.getType()!=CellType.RIVER1 && nextCell.getType()!=CellType.RIVER2
-                && nextCell.getType()!=CellType.DOOR && nextCell.getType()!=CellType.BEAR){
+                && nextCell.getType()!=CellType.DOOR){
             this.getCell().setActor(null);
             nextCell.setActor(this);
             this.setCell(nextCell);
@@ -122,16 +126,20 @@ public class Player extends Actor {
 
     public void attack(Cell cell, Cell nextCell){
         Player attacker = (Player) cell.getActor();
-        if (nextCell.getActor().getTileName().equals("skeleton")) {
-            ((Skeleton) nextCell.getActor()).loseHealth(attacker.getAttack());
-            if (((Skeleton) nextCell.getActor()).SkeletonHealth <= 0) {
-                nextCell.setActor(null);
-                nextCell.isDead();
+        try {
+            if (nextCell.getActor().getTileName().equals("skeleton")) {
+                ((Skeleton) nextCell.getActor()).loseHealth(attacker.getAttack());
+                if (((Skeleton) nextCell.getActor()).SkeletonHealth <= 0) {
+                    nextCell.setActor(null);
+                    nextCell.isDead();
                 } else attacker.loseHealth(((Skeleton) nextCell.getActor()).SkeletonDamage - 1);
                 if (attacker.getHealth() <= 0) {
                     attacker.getCell().setActor(null);
                 }
             }
+        }catch (NullPointerException ignore){
+
+        }
         }
 
     public void pickup() {
@@ -139,6 +147,12 @@ public class Player extends Actor {
             inventory.add(this.getCell().getTileName());
             items.add(this.getCell().getTileName());
             this.getCell().setType(CellType.FLOOR);
+            if (this.getCell().getTileName().equals("weapon")){
+                attack+=7;
+            }
+            if (this.getCell().getTileName().equals("armour")){
+                defense+=5;
+            }
         }
     }
 
