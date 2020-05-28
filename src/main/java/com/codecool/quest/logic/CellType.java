@@ -1,5 +1,6 @@
 package com.codecool.quest.logic;
 
+import com.codecool.quest.Tiles;
 import com.codecool.quest.logic.actors.Skeleton;
 
 public enum CellType {
@@ -27,9 +28,15 @@ public enum CellType {
     LETTERV("letterV"),
     LETTERR("letterR"),
     LETTERL("letterL"),
+    LETTERY("letterY"),
+    LETTERU("letterU"),
+    LETTERW("letterW"),
+    LETTERI("letterI"),
+    LETTERN("letterN"),
     DIGIT2("digit2"),
     EXCLAMATION("sign!"),
     LADDER("upladder"),
+    PRINCESS("princess"),
     DOWNLADDER("downladder");
 
     private final String tileName;
