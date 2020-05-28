@@ -194,14 +194,9 @@ public class Main extends Application {
                         refresh();
                         itemsListArray.remove("key");
                         System.out.println(itemsListArray + "ItemsListArray");
-                        MapLoader.currentMap="/map4.txt";
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        MapLoader.currentMap="/level2.txt";
                         map=MapLoader.loadMap();
-
+                        refresh();
                     }
                 }
                 Cell possibleStairCell = map.getCell(playerX, playerY);
@@ -209,11 +204,17 @@ public class Main extends Application {
                     MapLoader.currentMap = "/map5.txt";
                     map = MapLoader.loadMap();
                     refresh();
-                } else if(possibleStairCell.getType() == CellType.DOWNLADDER) {
+                }
+                break;
+
+            case N:
+                if (MapLoader.currentMap == "/level2.txt" ) {
+                    System.out.println("N if");
                     MapLoader.currentMap = "/map4.txt";
-                    map = MapLoader.loadMap();
+                    map=MapLoader.loadMap();
                     refresh();
-            }
+                }
+                break;
         }
     }
 
