@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 public class Player extends Actor {
-    private int health = 3;
+    private int health = 20;
     private int attack=2;
     private int defense =0;
     private ArrayList<String> inventory = new ArrayList<String>();
