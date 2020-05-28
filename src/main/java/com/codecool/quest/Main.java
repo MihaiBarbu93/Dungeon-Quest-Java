@@ -41,6 +41,7 @@ public class Main extends Application {
     Label defenseLabel = new Label();
     static Button Pickup = new Button("Pick Up");
     static Button DropItem = new Button("Drop");
+    static Button restart = new Button("Restart Game");
     ObservableList<String> items = FXCollections.observableArrayList();
     ListView<String> itemsList = map.getPlayer().getInventory();
     ArrayList itemsListArray = map.getPlayer().getKey();
@@ -105,8 +106,9 @@ public class Main extends Application {
         ui.add(defenseLabel, 0, 3);
         ui.add(Pickup, 0, 5);
         ui.add(DropItem, 0, 6);
-        ui.add(new Label("Inventory: "), 0, 7);
-        ui.add(map.getPlayer().getInventory(), 0, 8);
+        ui.add(restart,0,7);
+        ui.add(new Label("Inventory: "), 0, 8);
+        ui.add(map.getPlayer().getInventory(), 0, 9);
 
         BorderPane borderPane = new BorderPane();
 
@@ -131,6 +133,18 @@ public class Main extends Application {
             removeBear();
             map.getPlayer().drop();
         });
+
+        restart.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            primaryStage.close();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        });
+    }
+
+    private void gameOver(){
+        if(map.getPlayer().getHealth()<=0){
+            changeMap("/gameOver.txt");
+        }
     }
 
     public void removeBear(){
@@ -151,18 +165,22 @@ public class Main extends Application {
             case W:
 //                map.getPlayer().getCell().getType()
                 map.getPlayer().move(0, -1);
+                gameOver();
                 refresh();
                 break;
             case S:
                 map.getPlayer().move(0, 1);
+                gameOver();
                 refresh();
                 break;
             case A:
                 map.getPlayer().move(-1, 0);
+                gameOver();
                 refresh();
                 break;
             case D:
                 map.getPlayer().move(1,0);
+                gameOver();
                 refresh();
                 break;
             case Y:
@@ -205,7 +223,6 @@ public class Main extends Application {
         int currentArmor = map.getPlayer().getDefense();
         ArrayList<String> currentInventory = new ArrayList<>(map.getPlayer().getKey());
         ObservableList<String> currentItems = FXCollections.observableArrayList(currentInventory);
-        ListView<String> currentView = new ListView<>(currentItems);
         MapLoader.currentMap=level;
         map=MapLoader.loadMap();
         map.getPlayer().setHealth(currentHealth);
@@ -213,7 +230,10 @@ public class Main extends Application {
         map.getPlayer().setDefense(currentArmor);
         map.getPlayer().setKey(currentInventory);
         map.getPlayer().getItems().addAll(currentItems);
+        map.getPlayer().setInventory(currentItems);
     }
+
+
 
 
     private void refresh() {

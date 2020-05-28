@@ -3,6 +3,7 @@ package com.codecool.quest.logic.actors;
 import com.codecool.quest.Main;
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.CellType;
+import com.codecool.quest.logic.MapLoader;
 import com.codecool.quest.logic.actors.Actor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 
 public class Player extends Actor {
-    private int health = 20;
+    private int health = 3;
     private int attack=2;
     private int defense =0;
     private ArrayList<String> inventory = new ArrayList<String>();
@@ -40,9 +41,9 @@ public class Player extends Actor {
         return itemsList;
     }
 
-//    public void setInventory(ListView<String> itemsList) {
-//        this.itemsList = itemsList;
-//    }
+    public void setInventory(ObservableList<String> items) {
+        this.itemsList = new ListView<String>(items);;
+    }
 
     public int getHealth() {
         return health;
@@ -116,7 +117,7 @@ public class Player extends Actor {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
         if (nextCell.getType()!=CellType.EMPTY && nextCell.getType()!=CellType.WALL && nextCell.getActor()==null && nextCell.getType()!=CellType.PINE &&
                 nextCell.getType()!=CellType.TREE && nextCell.getType()!=CellType.RIVER1 && nextCell.getType()!=CellType.RIVER2
-                && nextCell.getType()!=CellType.DOOR){
+                && nextCell.getType()!=CellType.DOOR && nextCell.getType()!=CellType.BEAR){
             this.getCell().setActor(null);
             nextCell.setActor(this);
             this.setCell(nextCell);
