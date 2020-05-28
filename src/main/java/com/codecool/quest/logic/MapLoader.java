@@ -119,6 +119,21 @@ public class MapLoader {
                         case 'L':
                             cell.setType(CellType.LETTERL);
                             break;
+                        case 'Y':
+                            cell.setType(CellType.LETTERY);
+                            break;
+                        case 'u':
+                            cell.setType(CellType.LETTERU);
+                            break;
+                        case 'W':
+                            cell.setType(CellType.LETTERW);
+                            break;
+                        case 'I':
+                            cell.setType(CellType.LETTERI);
+                            break;
+                        case 'n':
+                            cell.setType(CellType.LETTERN);
+                            break;
                         case '2':
                             cell.setType(CellType.DIGIT2);
                             break;
@@ -131,6 +146,13 @@ public class MapLoader {
                         case 'N':
                             cell.setType(CellType.DOWNLADDER);
                             break;
+                        case 'z':
+                            cell.setType(CellType.BRIDGE);
+                            break;
+                        case '<':
+                            cell.setType(CellType.PRINCESS);
+                            break;
+
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

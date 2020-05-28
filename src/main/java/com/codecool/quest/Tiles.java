@@ -32,8 +32,8 @@ public class Tiles {
         tileMap.put("weapon", new Tile(3, 30));
         tileMap.put("key", new Tile(16, 23));
         tileMap.put("armour",new Tile(3, 23));
-        tileMap.put("door", new Tile(6, 4));
-        tileMap.put("open door", new Tile(4, 4));
+        tileMap.put("door", new Tile(3, 3));
+        tileMap.put("open door", new Tile(3, 4));
         tileMap.put("tree", new Tile(4, 2));
         tileMap.put("pine", new Tile(3, 2));
         tileMap.put("bear", new Tile(30, 8));
@@ -44,7 +44,7 @@ public class Tiles {
         tileMap.put("weaponChar",new Tile(26,0));
         tileMap.put("fullsetchar",new Tile(28,0));
         tileMap.put("deadSkel",new Tile(0,15));
-        tileMap.put("bride", new Tile(5,4));
+        tileMap.put("bridge", new Tile(6,5));
         tileMap.put("letterG", new Tile(25, 30));
         tileMap.put("letterA", new Tile(19, 30));
         tileMap.put("letterM", new Tile(31, 30));
@@ -52,11 +52,18 @@ public class Tiles {
         tileMap.put("letterO", new Tile(20, 31));
         tileMap.put("letterV", new Tile(27, 31));
         tileMap.put("letterR", new Tile(23, 31));
+        tileMap.put("letterY", new Tile(30, 31));
+        tileMap.put("letterU", new Tile(26, 31));
+        tileMap.put("letterW", new Tile(28, 31));
+        tileMap.put("letterI", new Tile(27, 30));
+        tileMap.put("letterN", new Tile(19, 31));
         tileMap.put("letterL", new Tile(30, 30));
         tileMap.put("digit2", new Tile(21, 29));
         tileMap.put("sign!", new Tile(19, 25));
         tileMap.put("upladder", new Tile(0, 5));
         tileMap.put("downladder", new Tile(4, 5));
+        tileMap.put("princess", new Tile(29, 3));
+
 
     }
 

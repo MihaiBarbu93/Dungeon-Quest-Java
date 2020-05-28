@@ -144,6 +144,16 @@ public class Main extends Application {
         }
     }
 
+    public void win(){
+        if(map.getPlayer().getCell().getNeighbor(-1,0).getTileName().equals("princess") ||
+                map.getPlayer().getCell().getNeighbor(1,0).getTileName().equals("princess") ||
+                map.getPlayer().getCell().getNeighbor(0,1).getTileName().equals("princess") ||
+                map.getPlayer().getCell().getNeighbor(0,-1).getTileName().equals("princess")){
+            changeMap("/win.txt");
+        }
+
+    }
+
     private void onKeyPressed(KeyEvent keyEvent) {
 
 
@@ -151,18 +161,22 @@ public class Main extends Application {
             case W:
 //                map.getPlayer().getCell().getType()
                 map.getPlayer().move(0, -1);
+                win();
                 refresh();
                 break;
             case S:
                 map.getPlayer().move(0, 1);
+                win();
                 refresh();
                 break;
             case A:
                 map.getPlayer().move(-1, 0);
+                win();
                 refresh();
                 break;
             case D:
                 map.getPlayer().move(1,0);
+                win();
                 refresh();
                 break;
             case Y:
