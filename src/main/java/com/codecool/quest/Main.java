@@ -121,38 +121,10 @@ public class Main extends Application {
         primaryStage.setTitle("Codecool Quest");
         primaryStage.show();
 
-//        if(MapLoader.currentMap == "/level2.txt") {
-//            try {
-//                Thread.sleep(5000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            MapLoader.currentMap = "/map4.txt";
-//            map=MapLoader.loadMap();
-//        }
-
-
-        // DROP
-//        DropItem.addEventHandler(MouseEvent.MOUSE_CLICKED,
-//                e -> {
-//                    for (int x = 0; x < map.getWidth(); x++) {
-//                        for (int y = 0; y < map.getHeight(); y++) {
-//                            Cell cell = map.getCell(x, y);
-//                            Cell cellBear = map.getCell(x, y);
-//                            if (cell.getTileName().equals("floor") && cell.getActor() != null) {
-//                                cell.setType(CellType.FISH);
-//                                cellBear.setType(CellType.BEAR);
-//                                itemsList.getItems().remove("fish");
-//                                refresh();
-//                            }
-//                        }
-//                    }
-//                });
-
-        //Pick UP
 
         Pickup.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             map.getPlayer().pickup();
+            refresh();
             System.out.println(itemsList);
         });
         DropItem.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {

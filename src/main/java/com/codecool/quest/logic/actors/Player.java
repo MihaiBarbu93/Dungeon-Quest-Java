@@ -146,13 +146,14 @@ public class Player extends Actor {
         if ((this.getCell().getType() != CellType.FLOOR)) {
             inventory.add(this.getCell().getTileName());
             items.add(this.getCell().getTileName());
-            this.getCell().setType(CellType.FLOOR);
             if (this.getCell().getTileName().equals("weapon")){
                 attack+=7;
             }
             if (this.getCell().getTileName().equals("armour")){
                 defense+=5;
             }
+            this.getCell().setType(CellType.FLOOR);
+
         }
     }
 
