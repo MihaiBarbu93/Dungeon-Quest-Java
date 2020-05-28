@@ -57,6 +57,10 @@ public class Tiles {
         tileMap.put("sign!", new Tile(19, 25));
         tileMap.put("upladder", new Tile(0, 5));
         tileMap.put("downladder", new Tile(4, 5));
+        tileMap.put("letterP", new Tile(21, 31));
+        tileMap.put("letterS", new Tile(24, 31));
+        tileMap.put("letterT", new Tile(25, 31));
+        tileMap.put("letterN", new Tile(19, 31));
 
     }
 

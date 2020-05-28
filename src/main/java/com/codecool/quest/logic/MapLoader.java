@@ -129,8 +129,18 @@ public class MapLoader {
                             cell.setType(CellType.LADDER);
                             break;
                         case 'N':
-                            cell.setType(CellType.DOWNLADDER);
+                            cell.setType(CellType.LETTERN);
                             break;
+                        case 'P':
+                            cell.setType(CellType.LETTERP);
+                            break;
+                        case 'S':
+                            cell.setType(CellType.LETTERS);
+                            break;
+                        case 'T':
+                            cell.setType(CellType.LETTERT);
+                            break;
+
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }
