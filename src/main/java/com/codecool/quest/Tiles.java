@@ -40,6 +40,10 @@ public class Tiles {
         tileMap.put("river1", new Tile(8, 4));
         tileMap.put("river2", new Tile(8, 5));
         tileMap.put("fish", new Tile(17, 29));
+        tileMap.put("armourChar",new Tile(28,1));
+        tileMap.put("weaponChar",new Tile(26,0));
+        tileMap.put("fullsetchar",new Tile(28,0));
+        tileMap.put("deadSkel",new Tile(0,15));
         tileMap.put("bride", new Tile(5,4));
         tileMap.put("letterG", new Tile(25, 30));
         tileMap.put("letterA", new Tile(19, 30));

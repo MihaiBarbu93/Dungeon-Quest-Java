@@ -17,6 +17,8 @@ public enum CellType {
     RIVER1("river1"),
     RIVER2("river2"),
     FISH("fish"),
+    SKULL("deadSkel");
+    FISH("fish"),
     BRIDGE("bridge"),
     LETTERG("letterG"),
     LETTERA("letterA"),
