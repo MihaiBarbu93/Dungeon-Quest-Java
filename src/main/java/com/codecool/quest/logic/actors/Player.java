@@ -161,6 +161,10 @@ public class Player extends Actor {
         if ((this.getCell().getType() != CellType.FISH)) {
             this.getCell().setType(CellType.FISH);
             itemsList.getItems().remove("fish");
+            System.out.println(getCell().getNeighbor(1,0).getTileName());
+            if (getCell().getNeighbor(1,0).getTileName().equals("floor")){
+                getCell().setNeighbor(1,0,CellType.BEAR);
+            }
         }
     }
 

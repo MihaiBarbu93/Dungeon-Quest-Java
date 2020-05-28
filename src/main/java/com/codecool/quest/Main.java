@@ -125,41 +125,24 @@ public class Main extends Application {
         Pickup.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             map.getPlayer().pickup();
             refresh();
-            System.out.println(itemsList);
+
         });
         DropItem.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            removeBear();
             map.getPlayer().drop();
         });
     }
 
-        //PICK UP
-//        Pickup.addEventHandler(MouseEvent.MOUSE_CLICKED,
-//                e -> {
-//                    for (int x = 0; x < map.getWidth(); x++) {
-//                        for (int y = 0; y < map.getHeight(); y++) {
-//                            Cell cell = map.getCell(x, y);
-//                            Player player = map.getPlayer();
-//                            if (cell.getTileName().equals("weapon") && cell.getActor() != null) {
-//                                refresh();
-//                                items.add(cell.getTileName());
-//                                cell.setType(CellType.FLOOR);
-//                            } else if (cell.getTileName().equals("key") && cell.getActor() != null ) {
-//                                items.add(cell.getTileName());
-//                                cell.setType(CellType.FLOOR);
-//                            } else if (cell.getTileName().equals("armour") && cell.getActor() != null) {
-//                                map.getPlayer().setDefense(map.getPlayer().getDefense()+2);
-//                                refresh();
-//                                items.add(cell.getTileName());
-//                                cell.setType(CellType.FLOOR);
-//                            }else if (cell.getTileName().equals("fish") && cell.getActor() != null) {
-//                                items.add(cell.getTileName());
-//                                cell.setType(CellType.FLOOR);
-//
-//                            }
-//                        }
-//                    }
-//                });
-//    }
+    public void removeBear(){
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                Cell cell = map.getCell(x, y);
+                if (cell.getTileName().equals("bear")){
+                    cell.setType(CellType.FLOOR);
+                }
+            }
+        }
+    }
 
     private void onKeyPressed(KeyEvent keyEvent) {
 
