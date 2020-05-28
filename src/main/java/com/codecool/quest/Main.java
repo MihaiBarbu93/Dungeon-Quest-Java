@@ -169,37 +169,52 @@ public class Main extends Application {
 
                 int playerX=map.getPlayer().getX();
                 int playerY=map.getPlayer().getY();
-                System.out.println(itemsListArray.toString());
-                if (itemsListArray.contains("key")) {
+                System.out.println(map.getPlayer().getInventory().getItems().toString());
+                System.out.println(map.getPlayer().getItems().toString());
+                System.out.println(map.getPlayer().getKey().toString());
+                if (map.getPlayer().getKey().contains("key")) {
                     Cell possibleDoorCell=map.getCell(playerX, playerY - 1);
                     if (possibleDoorCell.getType() == CellType.DOOR) {
                         possibleDoorCell.setType(CellType.OPEN_DOOR);
                         refresh();
                         itemsListArray.remove("key");
-                        System.out.println(itemsListArray + "ItemsListArray");
-                        MapLoader.currentMap="/level2.txt";
-                        map=MapLoader.loadMap();
+                        itemsList.getItems().remove("key");
+                        changeMap("/level2.txt");
                         refresh();
                     }
                 }
                 Cell possibleStairCell = map.getCell(playerX, playerY);
                 if (possibleStairCell.getType() == CellType.LADDER) {
-                    MapLoader.currentMap = "/map5.txt";
-                    map = MapLoader.loadMap();
+                    changeMap("/map5.txt");
                     refresh();
                 }
                 break;
 
             case N:
                 if (MapLoader.currentMap == "/level2.txt" ) {
-                    System.out.println("N if");
-                    MapLoader.currentMap = "/map4.txt";
-                    map=MapLoader.loadMap();
+                    changeMap("/map4.txt");
                     refresh();
                 }
                 break;
         }
     }
+
+    public void changeMap(String level) {
+        int currentHealth = map.getPlayer().getHealth();
+        int currentDamage = map.getPlayer().getAttack();
+        int currentArmor = map.getPlayer().getDefense();
+        ArrayList<String> currentInventory = new ArrayList<>(map.getPlayer().getKey());
+        ObservableList<String> currentItems = FXCollections.observableArrayList(currentInventory);
+        ListView<String> currentView = new ListView<>(currentItems);
+        MapLoader.currentMap=level;
+        map=MapLoader.loadMap();
+        map.getPlayer().setHealth(currentHealth);
+        map.getPlayer().setAttack(currentDamage);
+        map.getPlayer().setDefense(currentArmor);
+        map.getPlayer().setKey(currentInventory);
+        map.getPlayer().getItems().addAll(currentItems);
+    }
+
 
     private void refresh() {
         context.setFill(Color.BLACK);

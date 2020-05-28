@@ -17,16 +17,32 @@ public class Player extends Actor {
     private int attack=2;
     private int defense =0;
     private ArrayList<String> inventory = new ArrayList<String>();
-    ObservableList<String> items = FXCollections.observableArrayList(inventory);
+    private ObservableList<String> items = FXCollections.observableArrayList(inventory);
     private ListView<String> itemsList = new ListView<String>(items);
 
     public ArrayList<String> getKey(){
         return inventory;
     }
 
+    public ObservableList<String> getItems() {
+        return items;
+    }
+
+    public void setItems(ObservableList<String> items) {
+        this.items = items;
+    }
+
+    public void setKey(ArrayList<String> inventory) {
+        this.inventory = inventory;
+    }
+
     public ListView<String> getInventory(){
         return itemsList;
     }
+
+//    public void setInventory(ListView<String> itemsList) {
+//        this.itemsList = itemsList;
+//    }
 
     public int getHealth() {
         return health;
@@ -61,17 +77,14 @@ public class Player extends Actor {
 
 
     public String getTileName() {
-        for(String item : inventory ){
-            if (inventory.contains("weapon") && inventory.contains("armour")){
-                return "fullsetchar";
-            }
-            if (inventory.contains("weapon")) {
-                return "weaponChar";
-            }
-            if (inventory.contains("armour")){
-                return "armourChar";
-            }
-
+        if (inventory.contains("weapon") && inventory.contains("armour")){
+            return "fullsetchar";
+        }
+        if (inventory.contains("weapon")) {
+            return "weaponChar";
+        }
+        if (inventory.contains("armour")){
+            return "armourChar";
         }
         return "player";
     }
@@ -144,8 +157,8 @@ public class Player extends Actor {
 
     public void pickup() {
         if ((this.getCell().getType() != CellType.FLOOR)) {
-            inventory.add(this.getCell().getTileName());
-            items.add(this.getCell().getTileName());
+            getKey().add(this.getCell().getTileName());
+            getItems().add(this.getCell().getTileName());
             if (this.getCell().getTileName().equals("weapon")){
                 attack+=7;
             }
@@ -161,7 +174,6 @@ public class Player extends Actor {
         if ((this.getCell().getType() != CellType.FISH)) {
             this.getCell().setType(CellType.FISH);
             itemsList.getItems().remove("fish");
-            System.out.println(getCell().getNeighbor(1,0).getTileName());
             if (getCell().getNeighbor(1,0).getTileName().equals("floor")){
                 getCell().setNeighbor(1,0,CellType.BEAR);
             }
