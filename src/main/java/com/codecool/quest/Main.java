@@ -106,7 +106,7 @@ public class Main extends Application {
         ui.add(Pickup, 0, 5);
         ui.add(DropItem, 0, 6);
         ui.add(new Label("Inventory: "), 0, 7);
-        ui.add(itemsList, 0, 8);
+        ui.add(map.getPlayer().getInventory(), 0, 8);
 
         BorderPane borderPane = new BorderPane();
 
